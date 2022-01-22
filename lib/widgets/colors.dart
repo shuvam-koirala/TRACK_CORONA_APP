@@ -1,0 +1,12 @@
+import 'package:flutter/material.dart';
+Color red=Colors.red;
+Color green=Colors.green;
+Color blue=Colors.blue;
+Color purple=Colors.purple;
+Color indigo=Colors.indigo;
+Color yellow=Colors.yellow;
+Color orange=Colors.orange;
+Color teal=Colors.teal;
+Color brown=Colors.brown;
+Color bluegrey=Colors.blueGrey;
+Color white=Colors.white;

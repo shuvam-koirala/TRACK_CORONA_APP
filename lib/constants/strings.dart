@@ -1,0 +1,1 @@
+const String mohp_Api_Url ="https://covid19.mohp.gov.np/covid/api/confirmedcases";
