@@ -18,5 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 ## Here are some screenshots of the app 
 ## Screenshot 1
 <img src="Screenshot_1642840207.png" alt="Markdown Monster icon" style="float:left;margin-right:10px;" width="300" />
+
 ## Screenshot 2
 <img src="Screenshot_1642840213.png" alt="Markdown Monster icon" style="float:left;margin-right:10px;" width="300" />
