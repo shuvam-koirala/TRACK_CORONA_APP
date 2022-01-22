@@ -16,7 +16,7 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## Here are some screenshots of the app 
-## screenshot 1
+## Screenshot 1
 <img src="Screenshot_1642840207.png" alt="Markdown Monster icon" style="float:left;margin-right:10px;" width="300" />
-## screenshot 1
+## Screenshot 2
 <img src="Screenshot_1642840213.png" alt="Markdown Monster icon" style="float:left;margin-right:10px;" width="300" />
