@@ -1,6 +1,6 @@
 import 'package:coronagraph/model/coronadata.dart';
 import 'package:coronagraph/services/webservice.dart';
-import 'package:coronagraph/widgets/colors.dart';
+import 'package:coronagraph/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -101,11 +101,11 @@ class _HomeState extends State<Home> {
                       children: 
                       [
 
-                        CasesContainer(data: snapshot.data.todayNewcase, titleText: "New Cases",color: Colors.blue,heading: heading,subTitle: subtittle),
-                       CasesContainer(data: snapshot.data.todayDeath, titleText: "New Deaths",color: Colors.cyan,heading: heading,subTitle: subtittle) ,
-                       CasesContainer(data: snapshot.data.todayRecovered, titleText: "New Recovered",color: Colors.green,heading: heading,subTitle: subtittle),
-                        CasesContainer(data: snapshot.data.todayPcr, titleText: "New PCR",color: Colors.deepOrange,heading: heading,subTitle: subtittle) ,
-                       CasesContainer(data: snapshot.data.todayRdt, titleText: "New RDT",color: Colors.indigo,heading: heading,subTitle: subtittle),
+                       CasesContainer(data: snapshot.data.todayNewcase, titleText: "New Cases",color: blue,heading: heading,subTitle: subtittle),
+                       CasesContainer(data: snapshot.data.todayDeath, titleText: "New Deaths",color:cyan,heading: heading,subTitle: subtittle) ,
+                       CasesContainer(data: snapshot.data.todayRecovered, titleText: "New Recovered",color: green,heading: heading,subTitle: subtittle),
+                       CasesContainer(data: snapshot.data.todayPcr, titleText: "New PCR",color: deepOrange,heading: heading,subTitle: subtittle) ,
+                       CasesContainer(data: snapshot.data.todayRdt, titleText: "New RDT",color: indigo,heading: heading,subTitle: subtittle),
                         
                       ],
                     ),
@@ -115,13 +115,13 @@ class _HomeState extends State<Home> {
                     (
                       children: 
                       [
-                        CasesContainer(data:snapshot.data.positive, titleText: "Total Cases",color: Colors.red,heading: heading,subTitle: subtittle),                        
-                       CasesContainer(data: snapshot.data.extra2, titleText: "Total Infected",color: Colors.amber,heading: heading,subTitle: subtittle), 
-                       CasesContainer(data: snapshot.data.extra1, titleText: "Total Recovered",color: Colors.blue,heading: heading,subTitle: subtittle),
-                       CasesContainer(data: snapshot.data.deaths, titleText: "Total Deaths",color: Colors.cyan,heading: heading,subTitle: subtittle),
-                       CasesContainer(data: snapshot.data.samplesTested, titleText: "Total PCR",color: Colors.blue,heading: heading,subTitle: subtittle),
-                       CasesContainer(data: snapshot.data.extra5, titleText: "Isolation",color: Colors.indigo,heading: heading,subTitle: subtittle) ,
-                       CasesContainer(data: snapshot.data.extra8, titleText: "Quarantined",color: Colors.deepOrange,heading: heading,subTitle: subtittle) 
+                       CasesContainer(data:snapshot.data.positive, titleText: "Total Cases",color: red,heading: heading,subTitle: subtittle),                        
+                       CasesContainer(data: snapshot.data.extra2, titleText: "Total Infected",color: amber,heading: heading,subTitle: subtittle), 
+                       CasesContainer(data: snapshot.data.extra1, titleText: "Total Recovered",color: blue,heading: heading,subTitle: subtittle),
+                       CasesContainer(data: snapshot.data.deaths, titleText: "Total Deaths",color: cyan,heading: heading,subTitle: subtittle),
+                       CasesContainer(data: snapshot.data.samplesTested, titleText: "Total PCR",color: blue,heading: heading,subTitle: subtittle),
+                       CasesContainer(data: snapshot.data.extra5, titleText: "Isolation",color: indigo,heading: heading,subTitle: subtittle) ,
+                       CasesContainer(data: snapshot.data.extra8, titleText: "Quarantined",color: deepOrange,heading: heading,subTitle: subtittle) 
 
                       ],
                     ),

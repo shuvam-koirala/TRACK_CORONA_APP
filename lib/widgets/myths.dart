@@ -1,5 +1,5 @@
 import 'package:coronagraph/services/webservice.dart';
-import 'package:coronagraph/widgets/colors.dart';
+import 'package:coronagraph/constants/colors.dart';
 import 'package:flutter/material.dart';
 class MythScreen extends StatefulWidget {
   @override
@@ -62,8 +62,8 @@ class MythWidget extends StatelessWidget {
         return  Card
           (
             elevation: 10,
-            shadowColor: Colors.black,
-            color: Colors.black,
+            shadowColor: black,
+            color: black,
             child:
            Image.network(urls,
            frameBuilder:(BuildContext context, Widget child, int frame, bool wasSynchronouslyLoaded) {

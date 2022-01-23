@@ -2,7 +2,7 @@
 import 'package:coronagraph/model/coronaNews.dart';
 import 'package:coronagraph/services/webservice.dart';
 import 'package:flutter/material.dart';
-import 'package:coronagraph/widgets/colors.dart';
+import 'package:coronagraph/constants/colors.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 
 import 'package:url_launcher/url_launcher.dart';
@@ -34,7 +34,7 @@ class _NewsScreenState extends State<NewsScreen> {
    TextStyle heading2 = TextStyle
   ( 
     fontWeight: FontWeight.w500,
-    color: Colors.black,
+    color: black,
     fontSize: 18
   );
   
@@ -50,7 +50,7 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold
     (
-      backgroundColor: Colors.white,
+      backgroundColor: white,
       appBar: AppBar
       ( 
         centerTitle: true,
@@ -92,8 +92,8 @@ class NewsWidget extends StatelessWidget {
         ( 
           title: Card(
           elevation: 30,
-          shadowColor: Colors.green,
-          color:Colors.greenAccent ,
+          shadowColor: green,
+          color:greenAccent ,
           child: 
           Column(
             children: [
