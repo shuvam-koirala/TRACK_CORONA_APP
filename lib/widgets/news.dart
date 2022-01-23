@@ -1,14 +1,17 @@
+
+import 'package:coronagraph/model/coronaNews.dart';
+import 'package:coronagraph/services/webservice.dart';
 import 'package:flutter/material.dart';
 import 'package:coronagraph/widgets/colors.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:nepali_utils/nepali_utils.dart';
+
 import 'package:url_launcher/url_launcher.dart';
-class News extends StatefulWidget {
+class NewsScreen extends StatefulWidget {
   @override
-  _NewsState createState() => _NewsState();
+  _NewsScreenState createState() => _NewsScreenState();
 }
 
-class _NewsState extends State<News> {
+class _NewsScreenState extends State<NewsScreen> {
   _launchURL(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
@@ -20,80 +23,28 @@ class _NewsState extends State<News> {
   ( 
     fontWeight: FontWeight.w900,
     color: white,
-    fontSize: 30
+    fontSize: 25
   );
    TextStyle heading1 = TextStyle
   ( 
     fontWeight: FontWeight.w700,
     color:red,
-    fontSize: 25
+    fontSize: 20
   );
    TextStyle heading2 = TextStyle
   ( 
     fontWeight: FontWeight.w500,
     color: Colors.black,
-    fontSize: 20
+    fontSize: 18
   );
-  var data;
-  Future coronanews() async{
-   String url="https://corona.askbhunte.com/api/v1/news";
-   var response=await http.get(Uri.encodeFull(url),headers: {"Accept":"application/json"});
-   var jsondata=json.decode(response.body);
-   setState(() {  
-   data=jsondata["data"];
-   });
-  }
- Widget newsbuilder(){
-    if(data!=null){
-      return ListView.builder(
-        shrinkWrap: true,
-        itemCount: data.length,
-        itemBuilder: (BuildContext context, int index) {
-         String imageurl = data[index]["image_url"];
-         String title = data[index]["title"];
-         String summary = data[index]["summary"];
-         String newsurl = data[index]["url"];
-         
-        return ListTile
-        ( 
-          title: Card(
-          elevation: 30,
-          shadowColor: Colors.green,
-          color:Colors.greenAccent ,
-          child: 
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(title,style:heading1,),
-              ),
-              // Container
-              //   ( 
-              //     height:MediaQuery.of(context).size.height*0.5,
-              //     width:MediaQuery.of(context).size.width,
-              //     margin: EdgeInsets.all(10), 
-              //     child: Image.network(imageurl,fit: BoxFit.cover,)
-              //   ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 10),
-                child: Text(summary,style:heading2,),
-              ),
-            ],
-          ),
-          ),
-          
-        );
-       },
-      );
-    }
-    else{
-      return Center(child: CircularProgressIndicator());
-    }
-  }
+  
+ WebService _service; 
+ 
   @override
   void initState() {
+    _service=WebService();
     super.initState();
-     coronanews();
+    
   }
   @override
   Widget build(BuildContext context) {
@@ -109,10 +60,60 @@ class _NewsState extends State<News> {
       (
         child: Container
         (margin: EdgeInsets.only(top: 10),
-         child:newsbuilder(),
+         child:FutureBuilder<List<News>>(
+           future: _service.fetchCovidNewsData(),
+           builder: (BuildContext context, AsyncSnapshot<List<News>> snapshot) {
+             return !snapshot.hasData?Center(child: CircularProgressIndicator()):NewsWidget(data: snapshot.data, heading1: heading1, heading2: heading2);
+           },
+         ),
         )
 
       ),
     );
   }
 }
+
+class NewsWidget extends StatelessWidget {
+  const NewsWidget({ Key key,@required this.data,@required this.heading1,@required this.heading2 }) : super(key: key);
+  final List<News> data;
+  final TextStyle heading1,heading2;
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: data.length,
+        itemBuilder: (BuildContext context, int index) {
+         String title = data[index].title;
+         String description = data[index].description;
+         String content = data[index].content;
+         DateTime date = data[index].publishedAt;
+         NepaliDateTime newsDate=NepaliDateTime.parse(date.toIso8601String());
+        return ListTile
+        ( 
+          title: Card(
+          elevation: 30,
+          shadowColor: Colors.green,
+          color:Colors.greenAccent ,
+          child: 
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(title,style:heading1,),
+              ),
+              
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 10),
+                child: Text(description,style:heading2,),
+              ),
+              Align(alignment: Alignment.bottomRight,child: Text("${newsDate.year}-${newsDate.month}-${newsDate.day}",style:heading2),)
+            ,SizedBox(height: 10,)
+            ],
+          ),
+          ),
+          
+        );
+       },
+      );
+    }
+  }

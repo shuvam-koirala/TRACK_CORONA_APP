@@ -1,59 +1,27 @@
+import 'package:coronagraph/services/webservice.dart';
 import 'package:coronagraph/widgets/colors.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-class Myth extends StatefulWidget {
+class MythScreen extends StatefulWidget {
   @override
-  _MythState createState() => _MythState();
+  _MythScreenState createState() => _MythScreenState();
 }
 
-class _MythState extends State<Myth> {
+class _MythScreenState extends State<MythScreen> {
   TextStyle heading = TextStyle
   ( 
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w900,
     color: white,
-    fontSize: 30
+    fontSize: 25
   );
-  var data;
-  Future coronamyth() async{
-   String url="https://corona.askbhunte.com/api/v1/myths";
-   var response=await http.get(Uri.encodeFull(url),headers: {"Accept":"application/json"});
-   var jsondata=json.decode(response.body);
-   setState(() {  
-   data=jsondata["data"];
-   });
-  }
- Widget mythbuilder(){
-    if(data!=null){
-      return ListView.builder(
-        shrinkWrap: true,
-        itemCount: data.length,
-        itemBuilder: (BuildContext context, int index) {
-         String urls = data[index]["image_url"];
-        return ListTile
-        (
-          title: Card
-          (
-            child:Image.network(
-              urls,
-              fit: BoxFit.contain,
-              width: MediaQuery.of(context).size.width*0.9,
-              height: MediaQuery.of(context).size.height*0.81,
-              ),
-          ),
-        );
-       },
-      );
-    }
-    else{
-      return Center(child: CircularProgressIndicator());
-    }
-  }
+  ScrollController _scrollController;
+  WebService _service;
   @override
   void initState() {
+    _service=WebService();
     super.initState();
-     coronamyth();
   }
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold
@@ -67,10 +35,46 @@ class _MythState extends State<Myth> {
       (
         child: Container
         (margin: EdgeInsets.only(top: 0),
-         child:mythbuilder(),
+         child:FutureBuilder<List<String>>(
+           future: _service.fetchCovidMythData(),          
+           builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+             return !snapshot.hasData?Center(child: CircularProgressIndicator(),):MythWidget(data: snapshot.data);
+           },
+         ),
         )
 
       ),
     );
   }
+}
+class MythWidget extends StatelessWidget {
+  const MythWidget({ Key key, @required this.data }) : super(key: key);
+  final List<String> data;
+  @override
+  Widget build(BuildContext context) {
+   
+    return ListView.builder(
+
+        shrinkWrap: true,
+        itemCount: data.length,
+        itemBuilder: (BuildContext context, int index) {
+         String urls = data[index];
+        return  Card
+          (
+            elevation: 10,
+            shadowColor: Colors.black,
+            color: Colors.black,
+            child:
+           Image.network(urls,
+           frameBuilder:(BuildContext context, Widget child, int frame, bool wasSynchronouslyLoaded) {
+    return Padding(
+      padding: EdgeInsets.all(5.0),
+      child:child,
+        );
+       },        
+        )
+          );
+       },
+      );
+    }
 }

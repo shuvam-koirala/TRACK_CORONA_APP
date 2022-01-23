@@ -8,8 +8,10 @@ import 'package:coronagraph/widgets/totalRecoverieschart.dart';
 import 'package:coronagraph/widgets/totalcaseschart.dart';
 import 'package:coronagraph/widgets/home.dart';
 import 'package:flutter/material.dart';
+import 'package:nepali_utils/nepali_utils.dart';
 void main()
 {
+  NepaliUtils(Language.nepali);
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -20,14 +22,14 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/":(context)=>Home(),
-        "/news":(context)=>News(),
-        "/myth":(context)=>Myth(),
-        "/totalcaseschart":(context)=>TotalCasesChart(),
-        "/newcaseschart":(context)=>NewCasesChart(),
-        "/totaldeathschart":(context)=>TotalDeathsChart(),
-        "/totalrecoverieschart":(context)=>TotalRecoveriesChart(),
-        "/newdeathschart":(context)=>NewDeathsChart(),
-        "/newrecoverieschart":(context)=>NewRecoveriesChart(),
+        "/news":(context)=>NewsScreen(),
+        "/myth":(context)=>MythScreen(),
+        // "/totalcaseschart":(context)=>TotalCasesChart(),
+        // "/newcaseschart":(context)=>NewCasesChart(),
+        // "/totaldeathschart":(context)=>TotalDeathsChart(),
+        // "/totalrecoverieschart":(context)=>TotalRecoveriesChart(),
+        // "/newdeathschart":(context)=>NewDeathsChart(),
+        // "/newrecoverieschart":(context)=>NewRecoveriesChart(),
       },
       debugShowCheckedModeBanner: false,
     );
