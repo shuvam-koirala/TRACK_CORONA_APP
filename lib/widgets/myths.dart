@@ -13,7 +13,7 @@ class _MythScreenState extends State<MythScreen> {
     color: white,
     fontSize: 25
   );
-  ScrollController _scrollController;
+  
   WebService _service;
   @override
   void initState() {
