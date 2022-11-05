@@ -2,7 +2,7 @@
 
 ## Here are some screenshots of the app 
 
-<img src="Screenshot_1642840207.png" alt="Markdown Monster icon" height="400em" /> <img src="Screenshot_1642840213.png" alt="Markdown Monster icon" height="400em" /> <img src="Screenshot_1642939513.png" alt="Markdown Monster icon" height="400em" /> <img src="Screenshot_1642939520.png" alt="Markdown Monster icon" height="400em" />
+<img src="Screenshot_1642840207.png" alt="Markdown Monster icon" height="500em" /> <img src="Screenshot_1642840213.png" alt="Markdown Monster icon" height="500em" /> <img src="Screenshot_1642939513.png" alt="Markdown Monster icon" height="500em" /> <img src="Screenshot_1642939520.png" alt="Markdown Monster icon" height="500em" />
 
 ## Created & Maintained By
 
